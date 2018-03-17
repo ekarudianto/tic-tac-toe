@@ -6,6 +6,11 @@ const WEB_TITLE = 'Tic tac toe';
 
 module.exports = {
   entry: './src/main.js',
+  resolve: {
+    alias: {
+      config: path.resolve(__dirname, './config/'),
+    },
+  },
   devServer: {
     overlay: true,
   },

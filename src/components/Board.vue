@@ -5,7 +5,7 @@
       :id="'tile-' + i"
       :key="i"
       :index="i"
-      :game-state="gameState"
+      :game-state="game"
     />
   </div>
 </template>
@@ -21,9 +21,8 @@ export default {
   },
   data() {
     return {
-      gameState: {},
+      game: {},
       tiles: [],
-      turn: null,
     };
   },
   created() {
@@ -31,11 +30,17 @@ export default {
   },
   methods: {
     initGame() {
-      this.gameState = new Game();
-      this.tiles = this.gameState.tiles;
+      this.game = new Game();
+      this.tiles = this.game.tiles;
     },
     updateBoard(index) {
-      this.$set(this.tiles, index, 'o');
+      this.$set(this.tiles, index, this.game.currPlayer);
+
+      if (this.game.hasOver(this.game.currPlayer)) {
+        console.log(this.game.endStatus);
+      }
+
+      this.game.switchPlayer();
     },
   },
 };

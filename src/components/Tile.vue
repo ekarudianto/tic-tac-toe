@@ -1,5 +1,6 @@
 <template>
   <div
+    :class="{ disabled: hasClicked }"
     class="tile"
     @click="updateGame"
   >
@@ -15,7 +16,6 @@
 
 <script>
 import config from 'config/app-config.json';
-// import * as _ from 'lodash';
 
 export default {
   name: 'Tile',
@@ -60,10 +60,15 @@ export default {
 
 <style scoped>
   .tile {
+    cursor: pointer;
     display: inline-block;
     height: 200px;
     position: relative;
     width: 198px;
+  }
+
+  .tile.disabled {
+    cursor: not-allowed;
   }
 
   .o {

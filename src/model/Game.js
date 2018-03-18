@@ -41,7 +41,7 @@ export default class Game {
     // See if all tiles have already filled
     const isGameDraw = !_.some(this._tiles, t => typeof t === 'number');
     if (isGameDraw) {
-      this._endStatus = { status: config.GAME_STATUS.DRAW };
+      this._endStatus = { stat: config.GAME_STATUS.DRAW };
     }
 
     return isGameDraw;
@@ -63,7 +63,7 @@ export default class Game {
 
     for (const [index, win] of config.winCombos.entries()) {
       if (win.every(elem => plays.indexOf(elem) > -1)) {
-        winner = { index, player, status: config.GAME_STATUS.WIN };
+        winner = { index, player, stat: config.GAME_STATUS.WIN };
         break;
       }
     }
@@ -81,7 +81,6 @@ export default class Game {
       return { score: 0 };
     }
 
-    // an array to collect all the objects
     const moves = [];
     _.each(availSpots, (spot) => {
       const move = {};
@@ -97,16 +96,14 @@ export default class Game {
 
       // reset the spot to empty
       board[spot] = move.index;
-      // push the object to the array
       moves.push(move);
     });
 
+    // if it is the computer's turn loop over the moves and choose the move with the highest score
+    // else choose the lowest score
     let bestMove;
     let bestScore = player === config.PLAYER.MINIMIZER ? -10000 : 10000;
-
     _.each(moves, (move, index) => {
-      // if it is the computer's turn loop over the moves and choose the move with the highest score
-      // else choose the lowest score
       if (player === config.PLAYER.MINIMIZER && move.score > bestScore) {
         bestScore = move.score;
         bestMove = index;

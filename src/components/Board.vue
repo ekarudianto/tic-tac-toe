@@ -14,7 +14,7 @@
       />
     </div>
     <button
-      v-if="showBtn"
+      v-if="!canPlay"
       class="btn"
       @click="initGame">
       Play</button>
@@ -37,7 +37,6 @@ export default {
       canPlay: true,
       game: {},
       progressGame: null,
-      showBtn: false,
       tiles: [],
     };
   },
@@ -49,13 +48,12 @@ export default {
       this.game = new Game();
       this.tiles = this.game.tiles;
       this.progressGame = label.game_start;
-      this.showBtn = false;
+      this.canPlay = true;
     },
     updateBoard(index) {
       this.$set(this.tiles, index, this.game.currPlayer);
 
       if (this.game.hasOver(this.game.currPlayer)) {
-        this.showBtn = true;
         this.canPlay = false;
 
         // This determind who won and who lose
@@ -63,9 +61,11 @@ export default {
           label.game_lose : label.game_won;
 
         // Change the label if it's a draw
-        if (this.game.endStatus.status === config.GAME_STATUS.DRAW) {
+        if (this.game.endStatus.stat === config.GAME_STATUS.DRAW) {
           this.progressGame = label.game_tie;
         }
+
+        return;
       }
 
       this.game.switchPlayer();

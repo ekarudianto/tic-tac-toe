@@ -41,6 +41,7 @@ export default {
     gameState: {
       handler(val) {
         const tileValue = val.tiles[this.index];
+
         this.hasClicked = tileValue === this.maximizerVal || tileValue === this.minimizerVal;
         this.value = val.tiles[this.index];
       },

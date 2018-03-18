@@ -10,6 +10,7 @@ module.exports = {
     extensions: ['.js'],
     alias: {
       config: path.resolve(__dirname, './config/'),
+      i8n: path.resolve(__dirname, './i8n/'),
       model: path.resolve(__dirname, './src/model/'),
     },
   },

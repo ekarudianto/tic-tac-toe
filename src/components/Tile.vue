@@ -6,11 +6,11 @@
   >
     <div
       v-if="value === maximizerVal"
-      class="o" />
+      :class="maximizerVal" />
 
     <div
       v-if="value === minimizerVal"
-      class="x" />
+      :class="minimizerVal" />
   </div>
 </template>
 
@@ -40,7 +40,8 @@ export default {
   watch: {
     gameState: {
       handler(val) {
-        this.hasClicked = val.tiles[this.index] !== '';
+        const tileValue = val.tiles[this.index];
+        this.hasClicked = tileValue === this.maximizerVal || tileValue === this.minimizerVal;
         this.value = val.tiles[this.index];
       },
       deep: true,
@@ -62,9 +63,9 @@ export default {
   .tile {
     cursor: pointer;
     display: inline-block;
-    height: 200px;
+    height: 100px;
     position: relative;
-    width: 198px;
+    width: 98px;
   }
 
   .tile.disabled {
@@ -72,11 +73,11 @@ export default {
   }
 
   .o {
-    border: 20px solid #000;
+    border: 15px solid #000;
     height: 50%;
-    left: 15%;
+    left: 10%;
     position: absolute;
-    top: 15%;
+    top: 10%;
     width: 50%;
 
     -moz-border-radius: 50%;
@@ -89,10 +90,10 @@ export default {
     background-color: #000;
     content: "";
     display: block;
-    height: 160px;
-    left: 90px;
+    height: 80px;
+    left: 40px;
     position: absolute;
-    top: 20px;
+    top: 10px;
     width: 20px;
 
     -webkit-border-radius: 4px;
@@ -131,6 +132,6 @@ export default {
   #tile-3,
   #tile-4,
   #tile-5 {
-    height: 198px;
+    height: 98px;
   }
 </style>

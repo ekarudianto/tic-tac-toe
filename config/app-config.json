@@ -1,3 +1,7 @@
 {
-    "BOARD_SIZE": 3
+    "BOARD_SIZE": 3,
+    "PLAYER": {
+        "MAXIMIZER": "o",
+        "MINIMIZER": "x"
+    }
 }

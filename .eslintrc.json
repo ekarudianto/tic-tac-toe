@@ -7,8 +7,11 @@
       "import/no-unresolved": [
         "error",
         {
-          "ignore": [ "config/" ]
+          "ignore": [ "config/", "model/" ]
         }
+      ],
+      "import/extensions": [
+        ["error", "never", { "js": "always" }]
       ]
     }
 }

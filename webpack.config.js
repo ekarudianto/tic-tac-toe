@@ -7,8 +7,10 @@ const WEB_TITLE = 'Tic tac toe';
 module.exports = {
   entry: './src/main.js',
   resolve: {
+    extensions: ['.js'],
     alias: {
       config: path.resolve(__dirname, './config/'),
+      model: path.resolve(__dirname, './src/model/'),
     },
   },
   devServer: {
